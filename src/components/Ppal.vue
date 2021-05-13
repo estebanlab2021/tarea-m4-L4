@@ -58,16 +58,22 @@ export default {
         }
     },
     computed:{
-        ...mapState(['total']), 
+        ...mapState(['total']),
+        //concatenar:() => this.historias = this.historias.concat(this.total) 
     },
   methods:{
         //...mapMutations(['resetear']),
         busqueda (){
-            this.historias = this.historias.concat(this.total);
+            //this.historias = this.historias.concat(this.total);
             console.log(this.query);
             //this.filtrados = this.filtrados.concat(this.historias.filter(el => el === this.query));
-            console.log(this.historias.filter(el => el.toLowerCase().indexOf(this.query.toLowerCase()) > -1));
-            this.filtrados = this.filtrados.concat(this.historias.filter(el => el.toLowerCase().indexOf(this.query.toLowerCase()) > -1));
+            if(this.query !=''){
+                console.log(this.total.filter(el => el.toLowerCase().indexOf(this.query.toLowerCase()) > -1));
+                this.filtrados = this.filtrados.concat(this.total.filter(el => el.toLowerCase().indexOf(this.query.toLowerCase()) > -1));
+            }else{
+                this.filtrados;
+            }
+            
         },
         accion(){
             this.mostrar=true;
